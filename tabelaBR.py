@@ -14,7 +14,7 @@ def main():
     jogos = le_arquivo(sys.argv[1])
 
     print(exibicao_times(jogos))
- 
+
     # TODO: solução da pergunta 1
 
 
@@ -251,6 +251,7 @@ def ordenar_times(estatis: list[Time]) -> list[Time]:
                 estatis[i], estatis[j] = estatis[j], estatis[i]
     return estatis
 
+
 def desempate(estatis: list[Time]) -> list[Time]:
     '''
     Desempata os times com o mesmo número de pontos, saldo de gols e vitórias.
@@ -265,12 +266,12 @@ def desempate(estatis: list[Time]) -> list[Time]:
         while j < len(estatis):
             if (estatis[i].pontos == estatis[j].pontos and
                 estatis[i].saldo_gols == estatis[j].saldo_gols and
-                estatis[i].vitorias == estatis[j].vitorias):
+                    estatis[i].vitorias == estatis[j].vitorias):
                 if estatis[i].nome > estatis[j].nome:
                     estatis[i], estatis[j] = estatis[j], estatis[i]
             j += 1
     return estatis
-                
+
 
 def calcular_estatisticas(jogos: list[str]) -> list[Time]:
     '''
@@ -319,7 +320,8 @@ def calcular_estatisticas(jogos: list[str]) -> list[Time]:
         times_estatisticas.append(
             Time(time_nome, vitorias_total, saldo_gols_time, pontos_total))
 
-    return ordenar_times(times_estatisticas)
+    times_ordenados = ordenar_times(times_estatisticas)
+    return desempate(times_ordenados)
 
 
 def exibicao_times(jogos: list[str]) -> str:
@@ -372,7 +374,7 @@ def exibicao_times(jogos: list[str]) -> str:
     return resultado_str
 
     # TODO: solução da pergunta 2
-  
+
     # TODO: solução da pergunta 3
 
 
